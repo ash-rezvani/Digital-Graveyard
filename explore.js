@@ -25,6 +25,9 @@ const WORLD_MAX = 3000;
 // user-created graves will sit.
 
 const TREE = ` ^ \n/|\\\n/|\\\n | `;
+const SPOOKY_TREE_1 = ` \\ | /\n  \\|/\n---+---\n  /|\\ \n / | \\`; // bare, radiating dead branches
+const SPOOKY_TREE_2 = ` (o)(o)\n   \\_/\n  /-|-\\\n /  |  \\`; // gnarled trunk with a watching face
+const SPOOKY_TREE_3 = `   _\n  / \\_\n_/    \\\n \\    /\n  |  |\n  |  |`; // hollowed, leaning dead tree
 const BENCH = `_______\n[_|_|_]\n  | |  `;
 const FLOWER = ` ,@,\n  |\n  "`;
 const FOUNTAIN = ` .--.\n( ~~ )\n \`--'\n  ||  `;
@@ -36,13 +39,13 @@ const decorations = [
   { type: "bench", x: -150, y: -300, art: BENCH },
   { type: "bench", x: 150, y: -300, art: BENCH },
   { type: "tree", x: -600, y: -180, art: TREE },
-  { type: "tree", x: 600, y: -180, art: TREE },
-  { type: "tree", x: -700, y: 200, art: TREE },
+  { type: "tree", x: 600, y: -180, art: SPOOKY_TREE_1 },
+  { type: "tree", x: -700, y: 200, art: SPOOKY_TREE_2 },
   { type: "tree", x: 700, y: 200, art: TREE },
-  { type: "tree", x: -650, y: 600, art: TREE },
-  { type: "tree", x: 650, y: 600, art: TREE },
+  { type: "tree", x: -650, y: 600, art: SPOOKY_TREE_3 },
+  { type: "tree", x: 650, y: 600, art: SPOOKY_TREE_1 },
   { type: "tree", x: -400, y: 950, art: TREE },
-  { type: "tree", x: 400, y: 950, art: TREE },
+  { type: "tree", x: 400, y: 950, art: SPOOKY_TREE_2 },
   { type: "flower", x: -320, y: 40, art: FLOWER },
   { type: "flower", x: 320, y: 40, art: FLOWER },
   { type: "flower", x: -280, y: 380, art: FLOWER },
@@ -67,7 +70,14 @@ function renderDecorations() {
 
 // ---------- player ----------
 
-const TOMBSTONE = ` _____ \n/     \\\n|  R  |\n| I P |\n|_____|`;
+const TOMBSTONE_VARIANTS = [
+  ` _____ \n/     \\\n|  R  |\n| I P |\n|_____|`,
+  `  ___  \n /   \\ \n|     |\n| RIP |\n|_____|`,
+  `   +   \n _____ \n/ REST \\\n|      |\n|______|`,
+  ` __/\\__\n/  XX  \\\n|      |\n|______|`,
+  ` _______ \n/  HERE  \\\n|  LIES   |\n|_________|`,
+  `  .---.  \n /     \\ \n| ASLEEP |\n|________|`,
+];
 const STICK_FIGURE = ` O \n/|\\\n/ \\`;
 
 const player = {
@@ -153,7 +163,8 @@ function renderGrave(id, data) {
 
     const art = document.createElement("pre");
     art.style.margin = "0";
-    art.textContent = TOMBSTONE;
+    const variant = TOMBSTONE_VARIANTS[Math.floor(Math.random() * TOMBSTONE_VARIANTS.length)];
+    art.textContent = variant;
     el.appendChild(art);
 
     const tooltip = document.createElement("div");
