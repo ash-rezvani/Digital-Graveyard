@@ -76,7 +76,7 @@ const TOMBSTONE_VARIANTS = [
   `   +   \n _____ \n/ REST \\\n|      |\n|______|`,
   ` __/\\__\n/  XX  \\\n|      |\n|______|`,
   ` _______ \n/  HERE  \\\n|  LIES   |\n|_________|`,
-  `  .---.  \n /     \\ \n| ASLEEP |\n|________|`,
+  `  .---.  \n /     \\ \n| PEACE |\n|________|`,
 ];
 const STICK_FIGURE = ` O \n/|\\\n/ \\`;
 
