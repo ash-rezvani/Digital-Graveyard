@@ -1,0 +1,374 @@
+/* ============================================================
+   Digital Graveyard — shared styles
+   Black & white, monospace, ASCII-driven aesthetic.
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .fog { animation: drift 60s linear infinite; }
+}
+
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --dim: #8a8a8a;
+  --line: #ffffff;
+  --mono: "Courier New", Courier, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+}
+
+/* ---------- generic ---------- */
+
+a { color: inherit; }
+
+button, .btn {
+  font-family: var(--mono);
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  padding: 0.75em 1.5em;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+button:hover, .btn:hover,
+button:focus-visible, .btn:focus-visible {
+  background: var(--fg);
+  color: var(--bg);
+  outline: none;
+}
+
+button:focus-visible, .btn:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px dashed var(--fg);
+  outline-offset: 3px;
+}
+
+/* faint drifting fog layer used behind page content for atmosphere */
+.fog {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 20% at 20% 80%, rgba(255,255,255,0.05), transparent 60%),
+    radial-gradient(ellipse 35% 18% at 70% 90%, rgba(255,255,255,0.04), transparent 60%),
+    radial-gradient(ellipse 50% 22% at 50% 100%, rgba(255,255,255,0.035), transparent 60%);
+  z-index: 0;
+}
+
+@keyframes drift {
+  0%   { transform: translateX(-2%); }
+  50%  { transform: translateX(2%); }
+  100% { transform: translateX(-2%); }
+}
+
+/* ============================================================
+   Index page
+   ============================================================ */
+
+.landing {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.landing pre.crosses {
+  color: var(--dim);
+  font-size: 0.85rem;
+  line-height: 1.1;
+  margin: 0;
+  user-select: none;
+}
+
+.landing h1 {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.35em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.landing .subtitle {
+  margin: -1.5rem 0 0;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+}
+
+.landing .actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ============================================================
+   Create page
+   ============================================================ */
+
+.create-wrap {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem 4rem;
+}
+
+.create-wrap h1 {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  margin: 0 0 2.5rem;
+  text-align: center;
+}
+
+form.grave-form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field label {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.field .count {
+  align-self: flex-end;
+  font-size: 0.7rem;
+  color: var(--dim);
+}
+
+input[type="text"], textarea {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  font-family: var(--mono);
+  font-size: 1rem;
+  padding: 0.6em 0.7em;
+  width: 100%;
+  resize: vertical;
+}
+
+textarea { min-height: 120px; line-height: 1.4; }
+
+hr.divider {
+  border: none;
+  border-top: 1px dashed var(--dim);
+  margin: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.error-msg {
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--fg);
+  padding: 0.6em 0.8em;
+  font-size: 0.85rem;
+  display: none;
+}
+
+.error-msg.visible { display: block; }
+
+.back-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  border: 1px solid var(--dim);
+  color: var(--dim);
+  padding: 0.4em 0.8em;
+}
+
+.back-link:hover { color: var(--fg); border-color: var(--fg); }
+
+/* ============================================================
+   Explore page
+   ============================================================ */
+
+#viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: default;
+}
+
+#world {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+.decor, .grave, .player {
+  position: absolute;
+  white-space: pre;
+  line-height: 1.05;
+  font-size: 14px;
+  user-select: none;
+  transform: translate(-50%, -100%);
+}
+
+.decor { color: var(--dim); }
+.grave { color: var(--fg); }
+
+.grave .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  width: 220px;
+  border: 1px solid var(--fg);
+  background: var(--bg);
+  padding: 0.6em 0.7em;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  display: none;
+  text-align: left;
+}
+
+.grave.near .tooltip { display: block; }
+
+.tooltip .t-name {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 12px;
+  margin-bottom: 0.3em;
+}
+
+.tooltip .t-dates {
+  color: var(--dim);
+  margin-bottom: 0.5em;
+}
+
+.player {
+  color: var(--fg);
+  font-size: 15px;
+  z-index: 5;
+}
+
+.player.flip { transform: translate(-50%, -100%) scaleX(-1); }
+
+#hud {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--dim);
+}
+
+#hud .back-link { position: static; pointer-events: auto; }
+
+#hud .hint {
+  border: 1px solid var(--dim);
+  padding: 0.4em 0.8em;
+  text-align: right;
+}
+
+#loading-banner, #config-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+#config-banner { display: none; }
+#config-banner.visible { display: flex; }
+
+@media (max-width: 480px) {
+  .landing .actions { flex-direction: column; }
+  .field .count { font-size: 0.65rem; }
+}
+
+/* ---------- touch D-pad (shown on coarse-pointer devices) ---------- */
+
+#dpad {
+  display: none;
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 4;
+  width: 132px;
+  height: 132px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#dpad button {
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-color: var(--dim);
+  color: var(--dim);
+  background: rgba(0,0,0,0.5);
+}
+
+#dpad button[data-dir="up"]    { grid-column: 2; grid-row: 1; }
+#dpad button[data-dir="left"]  { grid-column: 1; grid-row: 2; }
+#dpad button[data-dir="down"]  { grid-column: 2; grid-row: 2; }
+#dpad button[data-dir="right"] { grid-column: 3; grid-row: 2; }
+
+@media (pointer: coarse) {
+  #dpad { display: grid; }
+  #hud .hint { display: none; }
+}

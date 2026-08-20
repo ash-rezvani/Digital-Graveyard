@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore — Digital Graveyard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="hud">
+    <a class="back-link" href="index.html">&larr; Back</a>
+    <div class="hint">move: arrow keys / WASD</div>
+  </div>
+
+  <div id="viewport">
+    <div id="world"></div>
+  </div>
+
+  <div id="dpad" aria-hidden="true">
+    <button type="button" data-dir="up">&uarr;</button>
+    <button type="button" data-dir="left">&larr;</button>
+    <button type="button" data-dir="down">&darr;</button>
+    <button type="button" data-dir="right">&rarr;</button>
+  </div>
+
+  <div id="loading-banner">Loading the graveyard&hellip;</div>
+  <div id="config-banner">
+    Firebase isn't configured yet.<br><br>
+    Add your project keys to <code>firebase-config.js</code> to load and save graves.
+  </div>
+
+  <script type="module" src="explore.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create a Grave — Digital Graveyard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fog" aria-hidden="true"></div>
+  <a class="back-link" href="index.html">&larr; Back</a>
+
+  <div class="create-wrap">
+    <h1>Create a Grave</h1>
+
+    <form class="grave-form" id="grave-form" novalidate>
+      <div class="field">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" maxlength="75" autocomplete="off" required>
+        <span class="count" id="name-count">0 / 75</span>
+      </div>
+
+      <hr class="divider">
+
+      <div class="field">
+        <label for="dates">Birth &amp; Death Dates:</label>
+        <input type="text" id="dates" name="dates" inputmode="numeric" maxlength="20"
+               placeholder="e.g. 1948 - 2021" autocomplete="off" required>
+      </div>
+
+      <div class="field">
+        <label for="obituary">Obituary:</label>
+        <textarea id="obituary" name="obituary" maxlength="500" rows="6"></textarea>
+        <span class="count" id="obituary-count">0 / 500</span>
+      </div>
+
+      <div class="error-msg" id="error-msg"></div>
+
+      <div class="form-actions">
+        <button type="submit" id="submit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module" src="create.js"></script>
+</body>
+</html>
