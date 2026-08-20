@@ -12,7 +12,7 @@ export let configOk = false;
 try {
   if (isFirebaseConfigured) {
     const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
+    db = getFirestore(app, "digital-graveyard");
     configOk = true;
   }
 } catch (err) {
